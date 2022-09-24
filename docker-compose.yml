@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:12
+    container_name: ruby-cocktail
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/postgres/init.d:/docker-entrypoint-initdb.d
+      - ./db/postgres/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ruby-cocktail # DB USER
+      POSTGRES_PASSWORD: ruby-cocktail # DB Password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_DB: postgres
+    hostname: ruby-cocktail
+    user: root
